@@ -7,10 +7,12 @@
 :root{
     --mainBck : #E4E7ED;
     --lightBck : #EDF1F4;
+    --blueColor : #4E12F5;
 }
 
 body{
     background-color: var(--mainBck);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .mainContainer{
@@ -19,7 +21,7 @@ body{
     left : 50%;
     transform: translate(-50%, -50%);
     height : 490px;
-    width : 280px;
+    width : 260px;
     background-color : var(--lightBck);
     border-radius : 4%;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
@@ -37,10 +39,39 @@ body{
     inset -2px -2px 3px rgba(255,255,255,.7);
 }
 
-/* .buttons{
+.gridContainer{
     display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: .6rem;
     height: 60%;
     width : 92%;
     margin : 0 auto;
-    background-color: red;
-} */
+    text-align: center;
+}
+
+.operator{
+    position: relative;
+    border-radius: 100%;
+    box-shadow : 3px 3px 3px rgba(0,0,0,.2),
+    -4px -4px 5px rgba(255,255,255,.75);
+}
+
+.operator:nth-child(16){
+    grid-column: 4/ span 1;
+    grid-row: 4 / span 2;
+    border-radius: 2rem;
+}
+
+.operator:nth-child(16),
+.operator:nth-child(1),.operator:nth-child(2),
+.operator:nth-child(3){
+    background-color: var(--blueColor);
+    color: white;
+}
+
+.op{
+    position: absolute;
+    top : 50%; 
+    left : 50%;
+    transform: translate(-50%, -50%);
+}
