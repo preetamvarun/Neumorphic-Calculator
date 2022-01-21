@@ -30,6 +30,7 @@ body{
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
+    transition: all 350ms ease;
 }
 
 .dark{
@@ -45,6 +46,7 @@ body{
     box-shadow: 2px 2px 1px rgba(0, 0, 0, .2),
     -3px -3px 5px rgba(255, 255, 255, .7);
     position: relative;
+    transition: all 350ms ease;
 }
 
 .darkBox{
@@ -58,6 +60,7 @@ body{
     position: absolute;
     top : 50%; left : 50%;
     transform : translate(-50%,-50%);
+    transition: all 350ms ease;
 }
 
 .y{
@@ -110,6 +113,7 @@ body{
 .operator:nth-child(3){
     background-color: var(--blueColor);
     color: white;
+    transition: all 350ms ease;
 }
 
 .darkOp{
