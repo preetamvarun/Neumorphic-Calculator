@@ -4,3 +4,19 @@
     box-sizing : border-box;
 }
 
+:root{
+    --mainBck : #E4E7ED;
+    --lightBck : #EDF1F4;
+}
+
+.mainContainer{
+    position: absolute;
+    top: 50%;
+    left : 50%;
+    transform: translate(-50%, -50%);
+    height : 490px;
+    width : 280px;
+    background-color : var(--lightBck);
+    border-radius : 5%;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
+}
