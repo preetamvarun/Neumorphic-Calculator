@@ -7,7 +7,9 @@
 :root{
     --mainBck : #E4E7ED;
     --lightBck : #EDF1F4;
+    --darkBck : #1c1c1c;
     --blueColor : #4E12F5;
+    --yellowColor : #E8A316;
 }
 
 body{
@@ -20,14 +22,50 @@ body{
     top: 50%;
     left : 50%;
     transform: translate(-50%, -50%);
-    height : 490px;
-    width : 260px;
+    height : calc(100vh/1.14);
+    width : 255px;
     background-color : var(--lightBck);
     border-radius : 4%;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
+}
+
+.dark{
+    background-color: var(--darkBck);
+}
+
+.togglerBox{
+    height : 25px;
+    width : 25px;
+    margin-left : .8rem;
+    background-color: var(--lightBck);
+    border-radius: 4px;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, .2),
+    -3px -3px 5px rgba(255, 255, 255, .7);
+    position: relative;
+}
+
+.darkBox{
+    box-shadow: 2px 2px 4.5px rgba(0, 0, 0, .9),
+    -3px -3px 4px rgba(255, 255, 255, .1);   
+    background-color: #1c1c1c;
+}
+
+.i{
+    font-size: .8rem;
+    position: absolute;
+    top : 50%; left : 50%;
+    transform : translate(-50%,-50%);
+}
+
+.y{
+    color : var(--yellowColor);
+}
+
+#ld{
+    display: none;
 }
 
 .resultBoard{
@@ -37,6 +75,11 @@ body{
     border-radius: 1.2rem;
     box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .2),
     inset -2px -2px 3px rgba(255,255,255,.7);
+}
+
+.darkRb{
+    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, .85),
+    inset -2px -2px 4px rgba(255,255,255,.2);
 }
 
 .gridContainer{
@@ -49,17 +92,17 @@ body{
     text-align: center;
 }
 
-.operator{
-    position: relative;
-    border-radius: 100%;
-    box-shadow : 3px 3px 3px rgba(0,0,0,.2),
-    -4px -4px 5px rgba(255,255,255,.75);
-}
-
 .operator:nth-child(16){
     grid-column: 4/ span 1;
     grid-row: 4 / span 2;
     border-radius: 2rem;
+}
+
+.operator{
+    position: relative;
+    border-radius: 100%;
+    box-shadow : 3px 3px 3px rgba(0,0,0,.1),
+    -2px -2px 5px rgba(255,255,255,.75);
 }
 
 .operator:nth-child(16),
@@ -69,9 +112,24 @@ body{
     color: white;
 }
 
+.darkOp{
+    box-shadow : 3px 3px 3px rgba(0,0,0,.75),
+    -2px -2px 5px rgba(255,255,255,.1);
+    color: white;
+    background-color: #1D1D1D;
+}
+
+.darkOp:nth-child(16), 
+.darkOp:nth-child(1), .darkOp:nth-child(2),
+.darkOp:nth-child(3){
+    background-color: var(--yellowColor);
+    color : black;
+}
+
 .op{
     position: absolute;
     top : 50%; 
     left : 50%;
     transform: translate(-50%, -50%);
 }
+

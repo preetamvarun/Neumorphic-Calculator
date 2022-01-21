@@ -5,11 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/4e89eb9914.js" crossorigin="anonymous"></script>
     <title>Neumorphic Calculator</title>
 </head>
 <body>
-    <div class="mainContainer">
-        <div class="resultBoard"></div>
+    <div class="mainContainer" id = "mainBox">
+
+        <label>
+            <input type="checkbox" id="ld">
+            <div class="togglerBox" id = "tb">
+                <i class="fas fa-sun i"></i>
+            </div>
+        </label>
+
+
+        <div class="resultBoard" id = "rb"></div>
         <div class="gridContainer">
             <div class="operator"><span class="op">AC</span></div>
             <div class="operator"><span class="op">/</span></div>
