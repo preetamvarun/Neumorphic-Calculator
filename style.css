@@ -49,8 +49,18 @@ body{
     transition: all 350ms ease;
 }
 
+.togglerBox:hover{
+    cursor: pointer;
+}
+
+.togglerBox:active{
+    transform : scale(0.96);
+    box-shadow: 2px 2px .8px rgba(0, 0, 0, .1),
+    -3px -3px 4px rgba(255, 255, 255, .1);
+}
+
 .darkBox{
-    box-shadow: 2px 2px 4.5px rgba(0, 0, 0, .9),
+    box-shadow: 2px 2px 4.5px rgba(0, 0, 0, .5),
     -3px -3px 4px rgba(255, 255, 255, .1);   
     background-color: #1c1c1c;
 }
@@ -58,7 +68,8 @@ body{
 .i{
     font-size: .8rem;
     position: absolute;
-    top : 50%; left : 50%;
+    top : 50%; 
+    left : 50%;
     transform : translate(-50%,-50%);
     transition: all 350ms ease;
 }
@@ -108,6 +119,16 @@ body{
     -2px -2px 5px rgba(255,255,255,.75);
 }
 
+.operator:active{
+    transform: scale(0.99);   
+    box-shadow : 3px 3px 2px rgba(0,0,0,.1),
+    -2px -2px 3px rgba(255,255,255,.1);
+}
+
+.operator:hover{
+    cursor: pointer;
+}
+
 .operator:nth-child(16),
 .operator:nth-child(1),.operator:nth-child(2),
 .operator:nth-child(3){
@@ -135,5 +156,9 @@ body{
     top : 50%; 
     left : 50%;
     transform: translate(-50%, -50%);
+}
+
+#cal{
+    font-size : 1.4rem;
 }
 
