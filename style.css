@@ -9,6 +9,10 @@
     --lightBck : #EDF1F4;
 }
 
+body{
+    background-color: var(--mainBck);
+}
+
 .mainContainer{
     position: absolute;
     top: 50%;
@@ -17,6 +21,26 @@
     height : 490px;
     width : 280px;
     background-color : var(--lightBck);
-    border-radius : 5%;
+    border-radius : 4%;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
 }
+
+.resultBoard{
+    height: 20%;
+    width : 92%;
+    margin : 0 auto;
+    border-radius: 1.2rem;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .2),
+    inset -2px -2px 3px rgba(255,255,255,.7);
+}
+
+/* .buttons{
+    display: grid;
+    height: 60%;
+    width : 92%;
+    margin : 0 auto;
+    background-color: red;
+} */
