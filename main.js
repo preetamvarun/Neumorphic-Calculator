@@ -2,6 +2,8 @@ const calciBox = document.getElementById('mainBox');
 const togglerBox = document.getElementById('tb');
 const operator = document.getElementsByClassName('operator');
 const resultBoard = document.getElementById('rb');
+const endResult = document.getElementById('er');
+const calculations = document.getElementById('calciBox');
 const icon = togglerBox.firstElementChild;
 
 
@@ -10,9 +12,11 @@ function setDarkStyles(){
     for(let i = 0; i < operator.length; i++){
         operator[i].classList.add('darkOp');
     }
-    rb.classList.add('darkRb');
+    resultBoard.classList.add('darkResultBox');
     togglerBox.classList.add('darkBox');
     icon.classList.add('y');
+    calculations.classList.add('calcDark');
+    endResult.classList.add('endResultDarkMode');
 }
 
 function setBrightStyles(){
@@ -20,9 +24,11 @@ function setBrightStyles(){
     for(let i = 0; i < operator.length; i++){
         operator[i].classList.remove('darkOp');
     }
-    rb.classList.remove('darkRb');
+    resultBoard.classList.remove('darkResultBox');
     togglerBox.classList.remove('darkBox');
     icon.classList.remove('y');
+    calculations.classList.remove('calcDark');
+    endResult.classList.add('endResultDarkMode');
 }
 
 togglerBox.addEventListener('click', function(){
@@ -36,3 +42,16 @@ togglerBox.addEventListener('click', function(){
         setBrightStyles();
     }
 });
+
+for(let i = 0; i < operator.length; i++){
+    let value = operator[i].firstElementChild.textContent;
+    // operator[i].addEventListener('click', function(){
+    //     displayArea.innerHTML += value;
+    // })
+    operator[i].addEventListener('click', function(){
+        if(value === "="){
+            endResult.style.display = 'block';
+            // console.log(endResult);
+        }
+    })
+}
