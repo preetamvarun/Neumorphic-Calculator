@@ -94,41 +94,50 @@ body{
     inset -2px -2px 3px rgba(255,255,255,.7);
 }
 
-.endResult{
-    background-color: red;
-    height: 40%;
-    width : 100%;
-    border-radius: 1.2rem;
-    display: none;
-    /* color: var(--blueColor); */
+.darkResultBox{
+    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, .85),
+    inset -2px -2px 4px rgba(255,255,255,.2);
 }
 
-.endResultDarkMode{
-    color : var(--yellowColor);
-}
-
-.calculations{
-    height : 60%;
-    width : 100%;
-    background-color: green;
-    border-radius: 1.2rem;
-}
-
-.calculations, .endResult{
+.history, .output{
     display: flex;
     justify-content: flex-end;
     align-items: center;
     overflow: hidden;
 }
 
-.calcDark {
+.history{
+    height : 60%;
+    width : 100%;
+    border-radius: 1.2rem;
+}
+
+/* HISTORY DARK */
+.calcDark{
     color : white;
 }
 
-.darkResultBox{
-    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, .85),
-    inset -2px -2px 4px rgba(255,255,255,.2);
+.history p{
+    margin : 10px;
 }
+
+.output p{
+    margin : 10px;
+    font-size : 1.4rem;
+}
+
+.output{
+    height: 40%;
+    width : 100%;
+    border-radius: 1.2rem;
+    color: var(--blueColor);
+}
+
+/* OUTPUT DARK */
+.endResultDarkMode{
+    color : var(--yellowColor);
+}
+
 
 .gridContainer{
     display: grid;

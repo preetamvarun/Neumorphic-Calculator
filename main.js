@@ -1,12 +1,17 @@
 const calciBox = document.getElementById('mainBox');
 const togglerBox = document.getElementById('tb');
-const operator = document.getElementsByClassName('operator');
+const numbers = document.getElementsByClassName('num');
+const operators = document.getElementsByClassName('opr');
+const clearItems = document.getElementsByClassName('clr');
 const resultBoard = document.getElementById('rb');
-const endResult = document.getElementById('er');
-const calculations = document.getElementById('calciBox');
+const output = document.getElementById('er');
+const history = document.getElementById('calciBox');
 const icon = togglerBox.firstElementChild;
+let historyValue = document.getElementById('history-value');
+let outputValue = document.getElementById('output-value');
 
 
+/* TOGGLE THEMES */
 function setDarkStyles(){
     calciBox.classList.add('dark');
     for(let i = 0; i < operator.length; i++){
@@ -15,8 +20,9 @@ function setDarkStyles(){
     resultBoard.classList.add('darkResultBox');
     togglerBox.classList.add('darkBox');
     icon.classList.add('y');
-    calculations.classList.add('calcDark');
-    endResult.classList.add('endResultDarkMode');
+    history.classList.add('calcDark');
+    output.classList.add('endResultDarkMode');
+    console.log(output);
 }
 
 function setBrightStyles(){
@@ -27,8 +33,9 @@ function setBrightStyles(){
     resultBoard.classList.remove('darkResultBox');
     togglerBox.classList.remove('darkBox');
     icon.classList.remove('y');
-    calculations.classList.remove('calcDark');
-    endResult.classList.add('endResultDarkMode');
+    history.classList.remove('calcDark');
+    output.classList.remove('endResultDarkMode');
+    console.log(output);
 }
 
 togglerBox.addEventListener('click', function(){
@@ -43,15 +50,45 @@ togglerBox.addEventListener('click', function(){
     }
 });
 
-for(let i = 0; i < operator.length; i++){
-    let value = operator[i].firstElementChild.textContent;
-    // operator[i].addEventListener('click', function(){
-    //     displayArea.innerHTML += value;
-    // })
-    operator[i].addEventListener('click', function(){
-        if(value === "="){
-            endResult.style.display = 'block';
-            // console.log(endResult);
-        }
+/* 0 . 9 */
+
+function getHistoryValue(){
+    return historyValue.textContent;
+}
+
+function setHistoryValue(value){
+    historyValue.innerHTML = value;
+}
+
+function clearHistoryValue(){
+    historyValue.innerHTML = "";
+}
+
+function clearOutputValue(){
+    outputValue.innerHTML = "";
+}
+
+for(let i = 0; i < numbers.length; i++){
+    numbers[i].addEventListener('click',function(){
+        historyValue.innerHTML += numbers[i].textContent;
     })
+}
+
+/*AC DEL*/
+for(let i = 0; i < clearItems.length; i++){
+    clearItems[i].addEventListener('click',function(){
+        if(clearItems[i].textContent === 'Del'){
+            let str = getHistoryValue();
+            str = str.substring(0,str.length-1);
+            setHistoryValue(str);
+        } else{
+            clearHistoryValue();
+            clearOutputValue();
+        }       
+    })
+}
+
+/* + - / x = */
+for(let i = 0; i < operators.length; i++){
+
 }
