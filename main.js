@@ -11,14 +11,12 @@ const icon = togglerBox.firstElementChild;
 let historyValue = document.getElementById('history-value');
 let outputValue = document.getElementById('output-value');
 
-/* 0 . 9 */
-
 function getHistoryValue(){
     return historyValue.textContent;
 }
 
-function setHistoryValue(value){
-    historyValue.innerHTML = value;
+function getOutputValue(){
+    return outputValue.textContent;
 }
 
 function clearHistoryValue(){
@@ -29,19 +27,31 @@ function clearOutputValue(){
     outputValue.innerHTML = "";
 }
 
+/* 0 . 9 */
 for(let i = 0; i < numbers.length; i++){
     numbers[i].addEventListener('click',function(){
         historyValue.innerHTML += numbers[i].textContent;
-    })
+        try{
+            outputValue.innerHTML = eval(historyValue.innerHTML);  
+        }
+        catch(err){
+            outputValue.textContent = "Format Error!";
+            outputValue.classList.add('error');
+        }
+    });
 }
 
 /* + - / x = */
 for(let i = 0; i < operators.length; i++){
-
+    operators[i].addEventListener('click', function(){
+        if(operators[i].textContent === "="){
+            historyValue.innerHTML = getOutputValue();
+            clearOutputValue();
+        } else{
+            historyValue.innerHTML += operators[i].textContent;
+        }
+    })
 }
-
-
-
 
 /*AC DEL*/
 for(let i = 0; i < clearItems.length; i++){
@@ -49,7 +59,7 @@ for(let i = 0; i < clearItems.length; i++){
         if(clearItems[i].textContent === 'Del'){
             let str = getHistoryValue();
             str = str.substring(0,str.length-1);
-            setHistoryValue(str);
+            historyValue.innerHTML = str;
         } else{
             clearHistoryValue();
             clearOutputValue();

@@ -133,6 +133,10 @@ body{
     color: var(--blueColor);
 }
 
+.error{
+    color : red;
+}
+
 /* OUTPUT DARK */
 .endResultDarkMode{
     color : var(--yellowColor);
