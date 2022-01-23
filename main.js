@@ -37,8 +37,16 @@ function setTimeOut(){
 
 function calci(x){
 
-    outputValue.classList.remove('error');
-    historyValue.classList.remove('error');
+    // outputValue.classList.remove('error');
+    // historyValue.classList.remove('error');
+
+    if(outputValue.classList.contains('error')){
+        outputValue.classList.remove('error');
+    }
+
+    if(historyValue.classList.contains('error')){
+        historyValue.classList.remove('error');
+    }
 
     // dealing with + - / *
     if(operatorsArr.indexOf(x.textContent) !== -1){
@@ -94,7 +102,7 @@ function calci(x){
 for(let i = 0; i < numbers.length; i++){
     numbers[i].addEventListener('click',function(){
         // if (resultArr.indexOf(historyValue.innerHTML) !== -1) calci(numbers[i]);
-        if(historyValue.innerHTML !== 'Format Error!'
+        if(historyValue.innerHTML !== 'Format Error!' && historyValue.innerHTML !== '-Infinity'
         && historyValue.innerHTML !== "Can't perform" && historyValue.innerHTML != 'Infinity'
         ) calci(numbers[i]);
     });
@@ -103,8 +111,8 @@ for(let i = 0; i < numbers.length; i++){
 /* + - / x =  %*/
 for(let i = 0; i < operators.length; i++){
     operators[i].addEventListener('click', function(){
-        if(historyValue.innerHTML !== 'Format Error!'
-        && historyValue.innerHTML !== "Can't perform" && historyValue.innerHTML != 'Infinity'
+        if(historyValue.innerHTML !== 'Format Error!' && historyValue.innerHTML !== '-Infinity'
+        && historyValue.innerHTML !== "Can't perform" && historyValue.innerHTML !== 'Infinity'
         ) calci(operators[i]);
     });
 }
@@ -119,7 +127,7 @@ for(let i = 0; i < clearItems.length; i++){
 
             let str = historyValue.innerHTML;
 
-            if(str === 'Infinity' || str === "Can't perform" || str === 'Format Error!'){
+            if(str === 'Infinity' || str === "Can't perform" || str === 'Format Error!' || str === '-Infinity'){
                 clearHistoryValue();
             }
 
