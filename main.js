@@ -50,9 +50,12 @@ function calci(x){
     else if(x.textContent === "="){
         clearOutputValue();
         try{
-            isNaN(getOutputValue()) ? historyValue.innerHTML = "Can't perform"
-            : historyValue.innerHTML = getOutputValue();
-            if(historyValue.textContent === "Can't perform" || historyValue.textContent === 'Infinity'){
+            if(isNaN(getOutputValue())){
+                historyValue.innerHTML = "Can't perform";
+            } else{
+                historyValue.innerHTML = getOutputValue();
+            }
+            if(historyValue.textContent === "Can't perform" || historyValue.textContent === 'Infinity' || historyValue.textContent === '-Infinity'){
                 historyValue.classList.add('error');
                 setTimeOut();
             }
