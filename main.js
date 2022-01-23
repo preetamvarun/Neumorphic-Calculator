@@ -20,11 +20,6 @@ function clearOutputValue(){
     outputValue.innerHTML = "";
 }
 
-function calculatePercentage(str ,num = 1){
-    number = Number(str);
-    return (number/100) * num;
-}
-
 function getOutputValue(){
     return eval(historyValue.innerHTML);
 }
@@ -35,10 +30,17 @@ function setTimeOut(){
     },2000);
 }
 
-function calci(x){
+function calculatePercentage(str ,num){
+    if(str === ''){
+        // do something here 
+    } else{
+        num = Number(num);
+        number = Number(str);
+    }
+    return (number/100) * num;
+}
 
-    // outputValue.classList.remove('error');
-    // historyValue.classList.remove('error');
+function calci(x){
 
     if(outputValue.classList.contains('error')){
         outputValue.classList.remove('error');
@@ -51,7 +53,6 @@ function calci(x){
     // dealing with + - / *
     if(operatorsArr.indexOf(x.textContent) !== -1){
         historyValue.innerHTML += x.textContent;
-        return;
     }
 
     // dealing with =
@@ -77,17 +78,34 @@ function calci(x){
 
     // dealing with %
     else if(x.textContent === "%"){
-
+        historyValue.innerHTML += x.textContent;
     }
 
     // dealing with numbers 
     else{
         historyValue.innerHTML += x.textContent;
         try{
+            if(historyValue.textContent[historyValue.textContent.length - 2] === "%"){
+                let x = calculatePercentage(outputValue.textContent , historyValue.textContent[historyValue.textContent.length - 1] );
+                if(false){
+                    historyValue.innerHTML = "Can't perform";
+                } else{
+                    historyValue.innerHTML = x;
+                }
+            }
+        } catch(err){
+            // Do nothing
+        }
+        try{
+            console.log(getOutputValue());
             if(isNaN(getOutputValue())){
-                outputValue.innerHTML = "Can't perform";
+                outputValue.innerHTML = "Can't Perform";
                 outputValue.classList.add('error');
-            } else{
+            } else if(getOutputValue() === Infinity || getOutputValue() === -Infinity){
+                outputValue.innerHTML = "Infinity";
+                outputValue.classList.add('error');
+            }
+            else{
                 outputValue.innerHTML = getOutputValue();
             }
         } catch(err){
