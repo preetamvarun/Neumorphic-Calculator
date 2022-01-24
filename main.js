@@ -11,6 +11,7 @@ const icon = togglerBox.firstElementChild;
 let historyValue = document.getElementById('history-value');
 let outputValue = document.getElementById('output-value');
 let operatorsArr = ["+","-","*","/"];
+let isDark = false;
 
 function clearHistoryValue(){
     historyValue.innerHTML = "";
@@ -30,6 +31,7 @@ function setTimeOut(){
     },2000);
 }
 
+// Calculating percentage manually because eval function is not working accurately on percentages
 function calculatePercentage(str ,num){
     num = Number(num);
     number = Number(str);
@@ -163,7 +165,6 @@ function setDarkStyles(){
     icon.classList.add('y');
     history.classList.add('calcDark');
     output.classList.add('endResultDarkMode');
-    console.log(output);
 }
 
 function setBrightStyles(){
@@ -176,17 +177,39 @@ function setBrightStyles(){
     icon.classList.remove('y');
     history.classList.remove('calcDark');
     output.classList.remove('endResultDarkMode');
-    console.log(output);
 }
 
 togglerBox.addEventListener('click', function(){
     if(icon.classList.contains('fa-sun')){
         icon.classList.remove('fa-sun');
         icon.classList.add('fa-moon');
+        localStorage.setItem('mode', JSON.stringify('dark-mode'));
         setDarkStyles();
     } else{
         icon.classList.add('fa-sun');
         icon.classList.remove('fa-moon');
+        localStorage.setItem('mode', JSON.stringify('bright-mode'));
         setBrightStyles();
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', function(){
+    let x;
+    // if the browswer is loaded for the first time
+    if(localStorage.getItem('mode') === null){
+        x = 'bright-mode';
+        localStorage.setItem('mode', JSON.stringify(x));
+    } else{
+        x = JSON.parse(localStorage.getItem('mode'));
+        if(x === 'dark-mode'){
+            setDarkStyles();
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        } else{
+            setBrightStyles();
+            icon.classList.add('fa-sun');
+            icon.classList.remove('fa-moon');
+        }
     }
 });
