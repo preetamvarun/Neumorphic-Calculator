@@ -11,7 +11,7 @@ const icon = togglerBox.firstElementChild;
 let historyValue = document.getElementById('history-value');
 let outputValue = document.getElementById('output-value');
 let operatorsArr = ["+","-","*","/"];
-let isDark = false;
+let pbv = "";
 
 function clearHistoryValue(){
     historyValue.innerHTML = "";
@@ -33,6 +33,7 @@ function setTimeOut(){
 
 // Calculating percentage manually because eval function is not working accurately on percentages
 function calculatePercentage(str ,num){
+    console.log(`the value of str is ${str} and the value of num is ${num}`);
     num = Number(num);
     number = Number(str);
     return (number/100) * num;
@@ -55,56 +56,90 @@ function calci(x){
 
     // dealing with =
     else if(x.textContent === "="){
-        clearOutputValue();
+
         try{
-            if(isNaN(getOutputValue())){
-                historyValue.innerHTML = "Can't perform";
-            } else{
-                historyValue.innerHTML = getOutputValue();
-            }
-            if(historyValue.textContent === "Can't perform" || historyValue.textContent === 'Infinity' || historyValue.textContent === '-Infinity'){
+
+            if(outputValue.textContent === 'Infinity' || outputValue.textContent === '-Infinity' || isNaN(getOutputValue())){
+
                 historyValue.classList.add('error');
+
+                if(outputValue.textContent === "Infinity" || outputValue.textContent === "-Infinity"){
+                    historyValue.textContent = outputValue.textContent;
+                } 
+                
+                else{
+                    historyValue.textContent = "Can't perform";
+                }
+
                 setTimeOut();
             }
+            
+            else{
+                historyValue.innerHTML = getOutputValue();
+            }
+
         } 
+
         catch(err){
             historyValue.textContent = 'Format Error!';
             historyValue.classList.add('error');   
             setTimeOut();
         }
+
+        clearOutputValue();
+
     }
 
     // dealing with %
     else if(x.textContent === "%"){
         if(historyValue.textContent !== ""){
             historyValue.innerHTML += x.textContent;
+            if(outputValue.textContent !== ""){
+                pbv = outputValue.textContent;
+            }
         }
+        console.log(`the value of pbv is ${pbv}`);
     }
 
     // dealing with numbers 
     else{
+
         historyValue.innerHTML += x.textContent;
-        if(historyValue.textContent[historyValue.textContent.length - 2] === "%"){
-            let x = calculatePercentage(outputValue.textContent , historyValue.textContent[historyValue.textContent.length - 1] );
-            outputValue.innerHTML = x;
-        }
+
         try{
-            console.log(getOutputValue());
-            if(isNaN(getOutputValue())){
+
+            let res = getOutputValue();
+            
+            if(isNaN(res)){
                 outputValue.innerHTML = "Can't Perform";
                 outputValue.classList.add('error');
-            } else if(getOutputValue() === Infinity || getOutputValue() === -Infinity){
+            } 
+
+            else if(res === Infinity || res === -Infinity){
                 outputValue.innerHTML = "Infinity";
                 outputValue.classList.add('error');
             }
+
             else{
-                if(historyValue.textContent[historyValue.textContent.length - 2] !== "%")
-                outputValue.innerHTML = getOutputValue();
+
+                if(historyValue.textContent[historyValue.textContent.length - 2] === "%"){
+                    outputValue.innerHTML = calculatePercentage(pbv , historyValue.textContent[historyValue.textContent.length - 1]);
+                    historyValue.innerHTML = outputValue.innerHTML;
+                }
+                
+                else{
+                    outputValue.innerHTML = res;
+                }
+                
             }
-        } catch(err){
+
+        } 
+
+        catch(err){
             outputValue.textContent = "Format Error!";
             outputValue.classList.add('error');
         }
+
     }
 }
 
