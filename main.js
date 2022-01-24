@@ -23,7 +23,7 @@ function clearOutputValue(){
 
 function getOutputValue(){
     if(historyValue.textContent.indexOf("%") === -1){
-        return eval(historyValue.innerHTML);
+        return eval(historyValue.innerHTML).toFixed(2);
     }
     return "";
 }
@@ -38,7 +38,7 @@ function setTimeOut(){
 function calculatePercentage(str ,num){
     num = Number(num);
     number = Number(str);
-    return (number/100) * num;
+    return ((number/100) * num).toFixed(2);
 }
 
 function calci(x){
