@@ -31,12 +31,8 @@ function setTimeOut(){
 }
 
 function calculatePercentage(str ,num){
-    if(str === ''){
-        // do something here 
-    } else{
-        num = Number(num);
-        number = Number(str);
-    }
+    num = Number(num);
+    number = Number(str);
     return (number/100) * num;
 }
 
@@ -78,23 +74,17 @@ function calci(x){
 
     // dealing with %
     else if(x.textContent === "%"){
-        historyValue.innerHTML += x.textContent;
+        if(historyValue.textContent !== ""){
+            historyValue.innerHTML += x.textContent;
+        }
     }
 
     // dealing with numbers 
     else{
         historyValue.innerHTML += x.textContent;
-        try{
-            if(historyValue.textContent[historyValue.textContent.length - 2] === "%"){
-                let x = calculatePercentage(outputValue.textContent , historyValue.textContent[historyValue.textContent.length - 1] );
-                if(false){
-                    historyValue.innerHTML = "Can't perform";
-                } else{
-                    historyValue.innerHTML = x;
-                }
-            }
-        } catch(err){
-            // Do nothing
+        if(historyValue.textContent[historyValue.textContent.length - 2] === "%"){
+            let x = calculatePercentage(outputValue.textContent , historyValue.textContent[historyValue.textContent.length - 1] );
+            historyValue.innerHTML = x;
         }
         try{
             console.log(getOutputValue());
