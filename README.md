@@ -31,6 +31,7 @@ The purpose of this project is to understand and implement the javascript concep
 
 <a name = "preview"> </a>
 ## 3. Preview 🎥
+preview will be added shortly
 
 <a name = "Installation"> </a>
 ## 4. Installation 📀
@@ -38,8 +39,8 @@ The purpose of this project is to understand and implement the javascript concep
 #### Clone the repo
 
 ```sh
-$ git clone https://github.com/preetamvarun/Task-List.git
-$ cd Task-List/
+$ git clone https://github.com/preetamvarun/Neumorphic-Calculator.git
+$ cd Neumorphic-Calculator/
 ```
 
 #### Run the app
@@ -56,14 +57,14 @@ open index.html with a browser you prefer
 
 <a name = "Features"> </a>
 ## 6. Features
-Add tasks ➕ <br>
-Edit tasks ✍️ <br>
-Filter tasks 🔍 <br>
-delete tasks 🗑️ <br>
-check off tasks ✅ <br>
+Addition ➕ <br>
+Multiplication ✖️ <br>
+Division ➗ <br>
+Substraction ➖ <br>
+Percentage Calculation ✅ <br>
 local storage 🗃️ <br>
 User friendly 🔥 <br>
-cool animations ☘️
+clean UI   ☘️ <br>
 
 <a name = "liveDemo"> </a>
 ## live demo 👾
