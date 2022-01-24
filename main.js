@@ -43,11 +43,11 @@ function calculatePercentage(str ,num){
 
 function calci(x){
 
-    if(outputValue.classList.contains('error')){
+    if(outputValue.classList.contains('error') && outputValue.textContent !== 'Format Error!'){
         outputValue.classList.remove('error');
     }
 
-    if(historyValue.classList.contains('error')){
+    if(historyValue.classList.contains('error') && outputValue.textContent !== 'Format Error!'){
         historyValue.classList.remove('error');
     }
 
