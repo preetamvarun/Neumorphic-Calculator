@@ -18,14 +18,16 @@ The purpose of this project is to understand and implement the javascript concep
 
 <a name = "screenshots"> </a>
 ## 2. Screenshots 📸
-<img src = "images/a-1.png" alt = "taskListImage" height = 350 width = 750>
-<img src = "images/b-1.png" alt = "taskListImage" height = 350 width = 750>
-<img src = "images/c-11.png" alt = "taskListImage" height = 350 width = 750>
-<img src = "images/d-1.png" alt = "taskListImage" height = 350 width = 750>
-<img src = "images/e-1.png" alt = "taskListImage" height = 350 width = 750>
-<img src = "images/f-1.png" alt = "taskListImage" height = 350 width = 750>
-<img src = "images/g-1.png" alt = "taskListImage" height = 350 width = 750>
-<img src = "images/i-1.png" alt = "taskListImage" height = 350 width = 750>
+<img src = "images/a-1.png" alt = "calciImage" width = "500">
+<img src = "images/a-2.png" alt = "calciImage" width = "500">
+<img src = "images/a-3.png" alt = "calciImage" width = "500">
+<img src = "images/a-4.png" alt = "calciImage" width = "500">
+<img src = "images/a-7.png" alt = "calciImage" width = "500">
+<img src = "images/a-8.png" alt = "calciImage" width = "500">
+<img src = "images/a-9.png" alt = "calciImage" width = "500">
+<img src = "images/a-10.png" alt = "calciImage" width = "500">
+<img src = "images/a-11.png" alt = "calciImage" width = "500">
+<img src = "images/a-12.png" alt = "calciImage" width = "500">
 
 <a name = "preview"> </a>
 ## 3. Preview 🎥
