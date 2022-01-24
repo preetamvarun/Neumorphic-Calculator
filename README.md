@@ -29,3 +29,18 @@ The purpose of this project is to understand and implement the javascript concep
 
 <a name = "preview"> </a>
 ## 3. Preview 🎥
+
+<a name = "Installation"> </a>
+## 4. Installation 📀
+
+#### Clone the repo
+
+```sh
+$ git clone https://github.com/preetamvarun/Task-List.git
+$ cd Task-List/
+```
+
+#### Run the app
+```sh
+open index.html with a browser you prefer
+```
