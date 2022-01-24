@@ -22,8 +22,7 @@ function clearOutputValue(){
 }
 
 function getOutputValue(){
-    if(historyValue.textContent !== "0%0"){
-        console.log("inside the function");
+    if(historyValue.textContent.indexOf("%") === -1){
         return eval(historyValue.innerHTML);
     }
     return "";
@@ -112,7 +111,6 @@ function calci(x){
 
             let res = getOutputValue();
 
-            console.log(`the value of res is ${res}`);
             
             if(isNaN(res)){
                 outputValue.innerHTML = "Can't Perform";
