@@ -22,7 +22,11 @@ function clearOutputValue(){
 }
 
 function getOutputValue(){
-    return eval(historyValue.innerHTML);
+    if(historyValue.textContent !== "0%0"){
+        console.log("inside the function");
+        return eval(historyValue.innerHTML);
+    }
+    return "";
 }
 
 function setTimeOut(){
@@ -33,7 +37,6 @@ function setTimeOut(){
 
 // Calculating percentage manually because eval function is not working accurately on percentages
 function calculatePercentage(str ,num){
-    console.log(`the value of str is ${str} and the value of num is ${num}`);
     num = Number(num);
     number = Number(str);
     return (number/100) * num;
@@ -98,7 +101,6 @@ function calci(x){
                 pbv = outputValue.textContent;
             }
         }
-        console.log(`the value of pbv is ${pbv}`);
     }
 
     // dealing with numbers 
@@ -109,6 +111,8 @@ function calci(x){
         try{
 
             let res = getOutputValue();
+
+            console.log(`the value of res is ${res}`);
             
             if(isNaN(res)){
                 outputValue.innerHTML = "Can't Perform";
