@@ -86,7 +86,7 @@ function calci(x){
         historyValue.innerHTML += x.textContent;
         if(historyValue.textContent[historyValue.textContent.length - 2] === "%"){
             let x = calculatePercentage(outputValue.textContent , historyValue.textContent[historyValue.textContent.length - 1] );
-            historyValue.innerHTML = x;
+            outputValue.innerHTML = x;
         }
         try{
             console.log(getOutputValue());
@@ -98,6 +98,7 @@ function calci(x){
                 outputValue.classList.add('error');
             }
             else{
+                if(historyValue.textContent[historyValue.textContent.length - 2] !== "%")
                 outputValue.innerHTML = getOutputValue();
             }
         } catch(err){
@@ -184,6 +185,7 @@ togglerBox.addEventListener('click', function(){
         icon.classList.remove('fa-sun');
         icon.classList.add('fa-moon');
         localStorage.setItem('mode', JSON.stringify('dark-mode'));
+        localStorage.setItem('icon', JSON.stringify('fa-moon'));
         setDarkStyles();
     } else{
         icon.classList.add('fa-sun');
