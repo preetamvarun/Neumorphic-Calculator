@@ -65,6 +65,7 @@ Percentage Calculation ✅ <br>
 local storage 🗃️ <br>
 User friendly 🔥 <br>
 clean UI   ☘️ <br>
+Responsive 〰
 
 <a name = "liveDemo"> </a>
 ## live demo 👾
