@@ -57,11 +57,6 @@ open index.html with a browser you prefer
 
 <a name = "Features"> </a>
 ## 6. Features
-Addition ➕ <br>
-Multiplication ✖️ <br>
-Division ➗ <br>
-Substraction ➖ <br>
-Percentage Calculation ✅ <br>
 local storage 🗃️ <br>
 User friendly 🔥 <br>
 clean UI   ☘️ <br>
