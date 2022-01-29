@@ -61,7 +61,7 @@ function calci(x){
 
     // dealing with + - / *
     if(operatorsArr.indexOf(x.textContent) !== -1){
-        resetPercentage();
+        if(calPer === true) resetPercentage();
         historyValue.innerHTML += x.textContent;
     }
 
