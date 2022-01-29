@@ -11,7 +11,7 @@ const icon = togglerBox.firstElementChild;
 let historyValue = document.getElementById('history-value');
 let outputValue = document.getElementById('output-value');
 let operatorsArr = ["+","-","*","/"];
-let pbv = "";
+let pbv = "", paf = "", calPer = false;
 
 function clearHistoryValue(){
     historyValue.innerHTML = "";
@@ -22,12 +22,11 @@ function clearOutputValue(){
 }
 
 function getOutputValue(){
-    if(historyValue.textContent[historyValue.textContent.length - 1] === "%"){
 
-    }
-    else if(historyValue.textContent.indexOf("%") === -1 ){
+    if(historyValue.textContent.indexOf("%") === -1 ){
         return eval(historyValue.innerHTML).toFixed(2);
     }
+
     return "";
 }
 
@@ -44,6 +43,12 @@ function calculatePercentage(str ,num = "1"){
     return ((number/100) * num).toFixed(2);
 }
 
+function resetPercentage(){
+    calPer = false;
+    outputValue.innerHTML = calculatePercentage(pbv,paf);
+    historyValue.innerHTML = outputValue.innerHTML;
+}
+
 function calci(x){
 
     if(outputValue.classList.contains('error') && outputValue.textContent !== 'Format Error!'){
@@ -56,6 +61,7 @@ function calci(x){
 
     // dealing with + - / *
     if(operatorsArr.indexOf(x.textContent) !== -1){
+        resetPercentage();
         historyValue.innerHTML += x.textContent;
     }
 
@@ -101,12 +107,19 @@ function calci(x){
 
     // dealing with %
     else if(x.textContent === "%"){
+
+        if(calPer === true){
+            resetPercentage();
+        }
+
+        // won't let the user to enter % as the first character into the input field
         if(historyValue.textContent !== ""){
             historyValue.innerHTML += x.textContent;
             if(outputValue.textContent !== ""){
                 pbv = outputValue.textContent;
             }
         }
+
     }
 
     // dealing with numbers 
@@ -131,9 +144,9 @@ function calci(x){
 
             else{
 
-                if(historyValue.textContent[historyValue.textContent.length - 2] === "%"){
-                    outputValue.innerHTML = calculatePercentage(pbv , historyValue.textContent[historyValue.textContent.length - 1]);
-                    historyValue.innerHTML = outputValue.innerHTML;
+                if(historyValue.textContent.indexOf("%") !== -1){
+                    calPer = true;
+                    paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 1, historyValue.textContent.length);
                 }
                 
                 else{
