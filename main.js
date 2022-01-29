@@ -22,7 +22,10 @@ function clearOutputValue(){
 }
 
 function getOutputValue(){
-    if(historyValue.textContent.indexOf("%") === -1){
+    if(historyValue.textContent[historyValue.textContent.length - 1] === "%"){
+
+    }
+    else if(historyValue.textContent.indexOf("%") === -1 ){
         return eval(historyValue.innerHTML).toFixed(2);
     }
     return "";
@@ -35,7 +38,7 @@ function setTimeOut(){
 }
 
 // Calculating percentage manually because eval function is not working accurately on percentages
-function calculatePercentage(str ,num){
+function calculatePercentage(str ,num = "1"){
     num = Number(num);
     number = Number(str);
     return ((number/100) * num).toFixed(2);
@@ -74,6 +77,10 @@ function calci(x){
                 }
 
                 setTimeOut();
+            }
+
+            else if(historyValue.textContent[historyValue.textContent.length - 1] === "%"){
+                historyValue.innerHTML = calculatePercentage(pbv);
             }
             
             else{
