@@ -70,15 +70,29 @@ function calci(x){
 
             if(historyValue.textContent.indexOf("%") >= 1){
 
-                calPer = true;
+                let lastchar = "", lastbutonechar = "";
 
-                if(historyValue.textContent.slice(historyValue.textContent.length-1, historyValue.textContent.length) === "%"){
-                    paf = 1;
-                } else{
-                    paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 1, historyValue.textContent.length);
+                lastchar = historyValue.textContent[historyValue.textContent.length-1];
+                lastbutonechar = historyValue.textContent[historyValue.textContent.length-2];
+
+                if( (lastchar === "%" && operatorsArr.indexOf(lastbutonechar) !== -1)
+
+                || (operators.indexOf(lastchar) !== -1 && lastbutonechar === "%") ){
+                    historyValue.textContent = 'Format Error!';
+                    historyValue.classList.add('error');   
+                    setTimeOut();
                 }
 
-                historyValue.innerHTML = calculatePercentage(pbv,paf);
+                else{
+                    calPer = true;
+                    if(historyValue.textContent.slice(historyValue.textContent.length-1, historyValue.textContent.length) === "%"){
+                        paf = 1;
+                    } else{
+                        paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 1, historyValue.textContent.length);
+                    }
+                    historyValue.innerHTML = calculatePercentage(pbv,paf);
+                }
+                
             }
 
             else if(outputValue.textContent === 'Infinity' || outputValue.textContent === '-Infinity' || isNaN(getOutputValue())){
@@ -176,7 +190,6 @@ function calci(x){
 /* 0 . 9 */
 for(let i = 0; i < numbers.length; i++){
     numbers[i].addEventListener('click',function(){
-        // if (resultArr.indexOf(historyValue.innerHTML) !== -1) calci(numbers[i]);
         if(historyValue.innerHTML !== 'Format Error!' && historyValue.innerHTML !== '-Infinity'
         && historyValue.innerHTML !== "Can't perform" && historyValue.innerHTML != 'Infinity'
         ) calci(numbers[i]);
