@@ -32,7 +32,7 @@ function setTimeOut(){
 }
 
 // Calculating percentage manually because eval function is not working accurately on percentages
-function calculatePercentage(str ,num = "1"){
+function calculatePercentage(str ,num){
     num = Number(num);
     number = Number(str);
     return ((number/100) * num).toFixed(2);
@@ -68,8 +68,20 @@ function calci(x){
 
         try{
 
+            if(historyValue.textContent.indexOf("%") >= 1){
 
-            if(outputValue.textContent === 'Infinity' || outputValue.textContent === '-Infinity' || isNaN(getOutputValue())){
+                calPer = true;
+
+                if(historyValue.textContent.slice(historyValue.textContent.length-1, historyValue.textContent.length) === "%"){
+                    paf = 1;
+                } else{
+                    paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 1, historyValue.textContent.length);
+                }
+
+                historyValue.innerHTML = calculatePercentage(pbv,paf);
+            }
+
+            else if(outputValue.textContent === 'Infinity' || outputValue.textContent === '-Infinity' || isNaN(getOutputValue())){
 
                 historyValue.classList.add('error');
 
@@ -82,17 +94,6 @@ function calci(x){
                 }
 
                 setTimeOut();
-            }
-
-            else if(historyValue.textContent.indexOf("%") === historyValue.textContent.length - 1){
-                console.log('getting here');
-                historyValue.innerHTML = calculatePercentage(pbv);
-            }
-            
-            else if(historyValue.textContent.indexOf("%") !== -1){
-                calPer = true;
-                paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 1, historyValue.textContent.length);
-                historyValue.innerHTML = calculatePercentage(pbv,paf);
             }
 
             else{
@@ -206,6 +207,11 @@ for(let i = 0; i < clearItems.length; i++){
             }
 
             else{
+
+                if(str[str.length-1] === "%"){
+                    calPer = false;
+                }
+
                 str = str.substring(0,str.length-1);
                 historyValue.innerHTML = str;
             }
