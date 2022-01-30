@@ -22,12 +22,7 @@ function clearOutputValue(){
 }
 
 function getOutputValue(){
-
-    if(historyValue.textContent.indexOf("%") === -1 ){
-        return eval(historyValue.innerHTML).toFixed(2);
-    }
-
-    return "";
+    return eval(historyValue.innerHTML).toFixed(2);
 }
 
 function setTimeOut(){
@@ -61,14 +56,18 @@ function calci(x){
 
     // dealing with + - / *
     if(operatorsArr.indexOf(x.textContent) !== -1){
-        if(calPer === true) resetPercentage();
+        if(calPer === true) {
+            resetPercentage();
+        }
         historyValue.innerHTML += x.textContent;
     }
 
     // dealing with =
     else if(x.textContent === "="){
 
+
         try{
+
 
             if(outputValue.textContent === 'Infinity' || outputValue.textContent === '-Infinity' || isNaN(getOutputValue())){
 
@@ -85,10 +84,17 @@ function calci(x){
                 setTimeOut();
             }
 
-            else if(historyValue.textContent[historyValue.textContent.length - 1] === "%"){
+            else if(historyValue.textContent.indexOf("%") === historyValue.textContent.length - 1){
+                console.log('getting here');
                 historyValue.innerHTML = calculatePercentage(pbv);
             }
             
+            else if(historyValue.textContent.indexOf("%") !== -1){
+                calPer = true;
+                paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 1, historyValue.textContent.length);
+                historyValue.innerHTML = calculatePercentage(pbv,paf);
+            }
+
             else{
                 historyValue.innerHTML = getOutputValue();
             }
