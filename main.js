@@ -11,6 +11,7 @@ const icon = togglerBox.firstElementChild;
 let historyValue = document.getElementById('history-value');
 let outputValue = document.getElementById('output-value');
 let operatorsArr = ["+","-","*","/"];
+let strictOperators = ["*","/"];
 let pbv = "", paf = "", calPer = false;
 
 function clearHistoryValue(){
@@ -78,12 +79,18 @@ function calci(x){
                 if( (lastchar === "%" && operatorsArr.indexOf(lastbutonechar) !== -1)
 
                 || (operators.indexOf(lastchar) !== -1 && lastbutonechar === "%") ){
+
+                    console.log(1);
+
                     historyValue.textContent = 'Format Error!';
                     historyValue.classList.add('error');   
                     setTimeOut();
                 }
 
                 else{
+
+                    console.log(2);
+
                     calPer = true;
                     if(historyValue.textContent.slice(historyValue.textContent.length-1, historyValue.textContent.length) === "%"){
                         paf = 1;
