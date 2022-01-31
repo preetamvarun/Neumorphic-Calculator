@@ -12,6 +12,7 @@ let historyValue = document.getElementById('history-value');
 let outputValue = document.getElementById('output-value');
 let operatorsArr = ["+","-","*","/"];
 let strictOperators = ["*","/"];
+let looseOperators = ["+","-"];
 let pbv = "", paf = "", calPer = false;
 
 function clearHistoryValue(){
@@ -66,21 +67,36 @@ function calci(x){
     // dealing with =
     else if(x.textContent === "="){
 
+        // 56%+2; 12+32*21/4%+2 // 12+23%+2*3/2
+
 
         try{
 
-            if(historyValue.textContent.indexOf("%") >= 1){
+            if(historyValue.textContent.indexOf("%") >= 1) {
 
-                let lastchar = "", lastbutonechar = "";
+                console.log('entered');
+
+                let lastchar = "", lastsecondchar = "", lastthirdchar = "";
 
                 lastchar = historyValue.textContent[historyValue.textContent.length-1];
-                lastbutonechar = historyValue.textContent[historyValue.textContent.length-2];
+                lastsecondchar = historyValue.textContent[historyValue.textContent.length-2];
+                lastthirdchar = historyValue.textContent[historyValue.textContent.length-3];
 
-                if( (lastchar === "%" && operatorsArr.indexOf(lastbutonechar) !== -1)
-
-                || (operators.indexOf(lastchar) !== -1 && lastbutonechar === "%") ){
+                // 56%+2; 38%-6;
+                if(looseOperators.indexOf(lastsecondchar) !== -1 && lastthirdchar === "%"){
 
                     console.log(1);
+
+                    paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 2, historyValue.textContent.length);
+
+                    historyValue.innerHTML = calculatePercentage(pbv,paf);
+
+                }
+
+                else if ( (lastchar === "%" && operatorsArr.indexOf(lastbutonechar) !== -1) 
+                        || (operators.indexOf(lastchar) !== -1 && lastbutonechar === "%") ){
+
+                    console.log(2);
 
                     historyValue.textContent = 'Format Error!';
                     historyValue.classList.add('error');   
@@ -89,14 +105,17 @@ function calci(x){
 
                 else{
 
-                    console.log(2);
+                    console.log(3);
 
-                    calPer = true;
                     if(historyValue.textContent.slice(historyValue.textContent.length-1, historyValue.textContent.length) === "%"){
                         paf = 1;
                     } else{
                         paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 1, historyValue.textContent.length);
                     }
+                    
+                    console.log(pbv);
+                    console.log(paf);
+                
                     historyValue.innerHTML = calculatePercentage(pbv,paf);
                 }
                 
@@ -304,3 +323,5 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
 });
+
+
