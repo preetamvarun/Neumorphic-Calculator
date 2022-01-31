@@ -67,55 +67,38 @@ function calci(x){
     // dealing with =
     else if(x.textContent === "="){
 
-        // 56%+2; 12+32*21/4%+2 // 12+23%+2*3/2
+        clearOutputValue();
 
+        const len = historyValue.textContent.length;
 
         try{
 
             if(historyValue.textContent.indexOf("%") >= 1) {
 
-                console.log('entered');
+                let lc = "", lsc = "", ltc = "";
 
-                let lastchar = "", lastsecondchar = "", lastthirdchar = "";
-
-                lastchar = historyValue.textContent[historyValue.textContent.length-1];
-                lastsecondchar = historyValue.textContent[historyValue.textContent.length-2];
-                lastthirdchar = historyValue.textContent[historyValue.textContent.length-3];
+                lc = historyValue.textContent[len-1];
+                lsc = historyValue.textContent[len-2];
+                ltc = historyValue.textContent[len-3];
 
                 // 56%+2; 38%-6;
-                if(looseOperators.indexOf(lastsecondchar) !== -1 && lastthirdchar === "%"){
-
-                    console.log(1);
-
-                    paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 2, historyValue.textContent.length);
-
+                if(looseOperators.indexOf(lsc) !== -1 && ltc === "%"){
+                    paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 2, len);
+                    lsc === "-" ? historyValue.innerHTML = calculatePercentage(pbv, -paf) :
                     historyValue.innerHTML = calculatePercentage(pbv,paf);
-
                 }
 
-                else if ( (lastchar === "%" && operatorsArr.indexOf(lastbutonechar) !== -1) 
-                        || (operators.indexOf(lastchar) !== -1 && lastbutonechar === "%") ){
-
-                    console.log(2);
-
+                // 45+%; 56%+;
+                else if ((lc === "%" && operatorsArr.indexOf(lsc) !== -1) || (operatorsArr.indexOf(lc) !== -1 && lsc === "%") ){
                     historyValue.textContent = 'Format Error!';
                     historyValue.classList.add('error');   
                     setTimeOut();
                 }
 
+                // 5 % 2; 32%
                 else{
-
-                    console.log(3);
-
-                    if(historyValue.textContent.slice(historyValue.textContent.length-1, historyValue.textContent.length) === "%"){
-                        paf = 1;
-                    } else{
-                        paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 1, historyValue.textContent.length);
-                    }
-                    
-                    console.log(pbv);
-                    console.log(paf);
-                
+                    historyValue.textContent.slice(len-1, len) === "%" ?
+                    paf = 1 : paf = historyValue.textContent.slice(historyValue.textContent.indexOf("%") + 1, len);
                     historyValue.innerHTML = calculatePercentage(pbv,paf);
                 }
                 
@@ -147,8 +130,6 @@ function calci(x){
             historyValue.classList.add('error');   
             setTimeOut();
         }
-
-        clearOutputValue();
 
     }
 
