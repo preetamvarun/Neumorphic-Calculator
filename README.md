@@ -57,7 +57,6 @@ open index.html with a browser you prefer
 
 <a name = "Features"> </a>
 ## 6. Features
-local storage 🗃️ <br>
 User friendly 🔥 <br>
 clean UI   ☘️ <br>
 Responsive 💙
